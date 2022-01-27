@@ -34,7 +34,7 @@ module.exports.run = async (client, message, args) => {
                 .setTimestamp();
 
             let CreateEmbed = new discord.MessageEmbed()
-                .setTitle(`Your ticket has been created ${message.author}! | ${createdChan}`)
+                .setDescription(`**Your ticket has been created ${message.author}!** | ${createdChan}`)
                 .setColor("GREEN")
                 .setTimestamp();
 
