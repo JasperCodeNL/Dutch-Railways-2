@@ -24,7 +24,7 @@ module.exports.run = async (client, message, args) => {
 
                 var ClearedEmbed = new discord.MessageEmbed()
                     .setColor("GREEN")
-                    .setTitle(`1 Message deleted!`)
+                    .setDescription(`**1 Message deleted!**`)
 
                 message.channel.send({ embeds: [ClearedEmbed] }).then(msg => {
                     setTimeout(() => {
@@ -36,7 +36,7 @@ module.exports.run = async (client, message, args) => {
 
                 var ClearedEmbedB = new discord.MessageEmbed()
                     .setColor("GREEN")
-                    .setTitle(`${parseInt(args[0])} Messages deleted!`)
+                    .setDescription(`**${parseInt(args[0])} Messages deleted!**`)
 
                 message.channel.send({ embeds: [ClearedEmbedB] }).then(msg => {
                     setTimeout(() => {
