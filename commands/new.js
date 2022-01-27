@@ -10,10 +10,10 @@ module.exports.run = async (client, message, args) => {
 
     var reason = args.join(" ");
 
-    if (!reason) reason = "Niet opgegeven!"
+    if (!reason) reason = "No reason given!"
 
     message.guild.channels.create(`ticket-${userDiscriminator}`, { type: "text" }).then((createdChan) => {
-
+bot
         createdChan.setParent(categoryID).then((settedParent) => {
 
             settedParent.permissionOverwrites.edit(message.author.id, {
@@ -30,10 +30,13 @@ module.exports.run = async (client, message, args) => {
                 .setDescription(`Welcome ${message.author}, the staff team is coming soon. Send your message in advance.`)
                 .addField("Reason:", reason)
                 .setFooter(`ticket-${userDiscriminator}`)
+                .setColor("BLUE")
+                .setTimestamp();
 
             let CreateEmbed = new discord.MessageEmbed()
                 .setTitle(`Your ticket has been created ${message.author}! | ${createdChan}`)
-                .setTimestamp()
+                .setColor("GREEN")
+                .setTimestamp();
 
             let LogEmbed = new discord.MessageEmbed()
                 .setTitle("Ticket Created")
@@ -47,7 +50,7 @@ module.exports.run = async (client, message, args) => {
             
             message.channel.send({ embeds: [CreateEmbed] });
             settedParent.send({ embeds: [TicketChEmbed] });
-            bot.channels.cache.get('935864875182346290').send({ embeds: [LogEmbed] });
+            client.channels.cache.get('935864875182346290').send({ embeds: [LogEmbed] });
 
         }).catch(err => {
             console.log(err)
