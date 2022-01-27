@@ -3,6 +3,7 @@ const discord = require("discord.js");
 module.exports.run = async (client, message, args) => {
 
     var ClearEmbed = new discord.MessageEmbed()
+        .setColor("BLUE")
         .setTitle("Clear Command")
         .setDescription("Delete messages. \n Command: *?clear <amount>*");
 
@@ -22,6 +23,7 @@ module.exports.run = async (client, message, args) => {
             if (parseInt(args[0]) == 1) {
 
                 var ClearedEmbed = new discord.MessageEmbed()
+                    .setColor("GREEN")
                     .setTitle(`1 Message deleted!`)
 
                 message.channel.send({ embeds: [ClearedEmbed] }).then(msg => {
@@ -33,6 +35,7 @@ module.exports.run = async (client, message, args) => {
             } else {
 
                 var ClearedEmbedB = new discord.MessageEmbed()
+                    .setColor("GREEN")
                     .setTitle(`${parseInt(args[0])} Messages deleted!`)
 
                 message.channel.send({ embeds: [ClearedEmbedB] }).then(msg => {
