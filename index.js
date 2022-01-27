@@ -1,5 +1,6 @@
 const { Client, Intents, Collection, GuildMember } = require("discord.js");
 const botConfig = require("./config.json");
+const discord = require("discord.js");
 const fs = require("fs");
 const { channel } = require("diagnostics_channel");
 
@@ -40,9 +41,17 @@ client.on("guildMemberAdd", member => {
 
     var logChannel = member.guild.channels.cache.get("935864875182346290");
 
-    if(!logChannel) return;
+    if (!logChannel) return;
 
-    logChannel.send(`**${member}** Joinded the server!`)
+    var joinEmbed = new discord.MessageEmbed()
+        .setTitle("Joinlog Discord")
+        .setDescription("An user joined the Discord server.")
+        .setColor("GREEN")
+        .addFields(
+            { name: "User:", value: `*${member}*` },
+        );
+
+    logChannel.send({ embeds: [joinEmbed] });
 
 });
 
