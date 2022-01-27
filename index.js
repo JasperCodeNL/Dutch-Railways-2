@@ -7,7 +7,8 @@ const { channel } = require("diagnostics_channel");
 const client = new Client({
     intents: [Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES,
-    Intents.FLAGS.GUILD_MEMBERS]
+    Intents.FLAGS.GUILD_MEMBERS,
+    Intents.FLAGS.GUILD_BANS]
 });
 
 client.commands = new Collection();
@@ -31,32 +32,6 @@ client.once("ready", () => {
 
 });
 
-client.on("guildMemberAdd", member => {
-
-    var role = member.guild.roles.cache.get("809064498014322729");
-
-    if (!role) return;
-
-    member.role.add(role);
-
-    var logChannel = member.guild.channels.cache.get("935864875182346290");
-
-    if (!logChannel) return;
-
-    var joinEmbed = new discord.MessageEmbed()
-        .setTitle("Joinlog Discord")
-        .setDescription("An user joined the Discord server.")
-        .setColor("GREEN")
-        .setFooter("Discord-logs")
-        .addFields(
-            { name: "Name:", value: `*${member}*` },
-            { name: "Id:", value: `*${member.id}*` },
-            { name: "Account Age:", value: `*${member.user.createdAt}*` },
-        );
-
-    logChannel.send({ embeds: [joinEmbed] });
-
-});
 
 client.on("messageCreate", async message => {
 
@@ -85,6 +60,89 @@ client.on("messageCreate", async message => {
         console.error();
         await message.reply(`${error}`);
     }
+
+});
+
+client.on("guildMemberAdd", member => {
+
+    var role = member.guild.roles.cache.get("809064498014322729");
+
+    member.role.add(role);
+
+    var logChannel = member.guild.channels.cache.get("935864875182346290");
+
+    var joinEmbed = new discord.MessageEmbed()
+        .setTitle("User joined")
+        .setDescription("An user joined the Discord server.")
+        .setColor("GREEN")
+        .setFooter("Discord-logs")
+        .addFields(
+            { name: "Name:", value: `*${member}*` },
+            { name: "Id:", value: `*${member.id}*` },
+            { name: "Account Age:", value: `*${member.user.createdAt}*` },
+        );
+
+    logChannel.send({ embeds: [joinEmbed] });
+
+});
+
+client.on("guildMemberRemove", member => {
+
+    var logChannel = member.guild.channels.cache.get("935864875182346290");
+
+    var leaveEmbed = new discord.MessageEmbed()
+        .setTitle("User leaved")
+        .setDescription("An user leaved the Discord server.")
+        .setColor("RED")
+        .setFooter("Discord-logs")
+        .addFields(
+            { name: "Name:", value: `*${member}*` },
+            { name: "Id:", value: `*${member.id}*` },
+            { name: "Account Age:", value: `*${member.user.createdAt}*` },
+        );
+
+    logChannel.send({ embeds: [leaveEmbed] });
+
+});
+
+client.on("messageDelete", async messageDeleted => {
+
+    if (messageDeleted.author.bot) return;
+
+    var deleteEmbed = new discord.MessageEmbed()
+        .setTitle("Message deleted")
+        .setDescription("A message is deleted.")
+        .setColor("BLUE")
+        .setFooter("Discord-logs")
+        .addFields(
+            { name: "User:", value: `${messageDeleted.author.tag} (${messageDeleted.author.id})` },
+            { name: "Channel:", value: `${messageDeleted.channel}` },
+            { name: "Message:", value: `${messageDeleted.content}` },
+        );
+
+    client.channels.cache.get('935864875182346290').send({ embeds: [deleteEmbed] });
+
+});
+
+client.on("messageUpdate", async (oldMessage, newMessage) => {
+
+    if (newMessage.author.bot) return;
+
+    if (oldMessage.content == newMessage.content) return;
+
+    var editEmbed = new discord.MessageEmbed()
+        .setTitle("Message deleted")
+        .setDescription("A message is deleted.")
+        .setColor("BLUE")
+        .setFooter("Discord-logs")
+        .addFields(
+            { name: "User:", value: `${newMessage.author.tag} (${newMessage.author.id})` },
+            { name: "Channel:", value: `${newMessage.channel}` },
+            { name: "Befor:", value: `${oldMessage.content}` },
+            { name: "After:", value: `${newMessage.content}` },
+        );
+
+    client.channels.cache.get('935864875182346290').send({ embeds: [editEmbed] });
 
 });
 
