@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args) => {
 
         var standart = ""
         var Info = ""
-        var Mod = "-"
+        var Mod = ""
 
         client.commands.forEach(command => {
 
@@ -55,5 +55,5 @@ module.exports.run = async (client, message, args) => {
 module.exports.help = {
     name: "help",
     category: "Information",
-    description: "All commands!"
+    description: "All commands"
 }

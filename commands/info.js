@@ -22,5 +22,5 @@ var Footer = "© Dutch Railways 2022"
 module.exports.help = {
     name: "info",
     category: "Information",
-    description: "Information about our server."
+    description: "Information about our server"
 }

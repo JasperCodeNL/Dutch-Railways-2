@@ -6,7 +6,6 @@ module.exports.run = async (client, message, args) => {
     var botEmbed = new discord.MessageEmbed()
         .setTitle("It works!")
         .setColor("GREEN")
-        .setTimestamp()    
     
     return message.channel.send({embeds: [botEmbed] });
 
