@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) => {
     if (!reason) reason = "No reason given!"
 
     message.guild.channels.create(`ticket-${userDiscriminator}`, { type: "text" }).then((createdChan) => {
-bot
+
         createdChan.setParent(categoryID).then((settedParent) => {
 
             settedParent.permissionOverwrites.edit(message.author.id, {
@@ -28,7 +28,7 @@ bot
             let TicketChEmbed = new discord.MessageEmbed()
                 .setTitle(`ticket-${userDiscriminator}`)
                 .setDescription(`Welcome ${message.author}, the staff team is coming soon. Send your message in advance.`)
-                .addField("Reason:", reason)
+                .addField("Reason:", `${reason}`)
                 .setFooter(`ticket-${userDiscriminator}`)
                 .setColor("BLUE")
                 .setTimestamp();
