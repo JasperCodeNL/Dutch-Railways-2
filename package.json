@@ -1,0 +1,27 @@
+{
+  "name": "dutch-railways-2",
+  "version": "1.0.0",
+  "description": "Official bot of Dutch Railways Roblox!",
+  "main": "index.js",
+  "scripts": {
+    "test": "?test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JasperCodeNL/Dutch-Railways-2.git"
+  },
+  "keywords": [
+    "Bot",
+    "Discord",
+    "Trains"
+  ],
+  "author": "Jasper_K",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JasperCodeNL/Dutch-Railways-2/issues"
+  },
+  "homepage": "https://github.com/JasperCodeNL/Dutch-Railways-2#readme",
+  "dependencies": {
+    "discord.js": "^13.6.0"
+  }
+}
