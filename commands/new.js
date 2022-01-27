@@ -42,7 +42,7 @@ module.exports.run = async (client, message, args) => {
                 .setColor("BLUE")
                 .addFields(
                     { name: "User:", value: `${message.author.tag} (${message.author.id})` },
-                    { name: "Ticket:", value: `#${createdChannel.name}` }
+                    { name: "Ticket:", value: `#${createdChan.name}` }
                 );
             
             message.channel.send({ embeds: [CreateEmbed] });
