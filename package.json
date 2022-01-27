@@ -23,5 +23,8 @@
   "homepage": "https://github.com/JasperCodeNL/Dutch-Railways-2#readme",
   "dependencies": {
     "discord.js": "^13.6.0"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
