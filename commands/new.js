@@ -27,7 +27,7 @@ module.exports.run = async (client, message, args) => {
 
             let TicketChEmbed = new discord.MessageEmbed()
                 .setTitle(`ticket-${userDiscriminator}`)
-                .setDescription(`Welcome ${message.author}, the staff team is coming soon. Send your message in advance.`)
+                .setDescription(`Welcome ${message.author}, the staff team come quickly. Send your message in advance.`)
                 .addField("Reason:", `${reason}`)
                 .setFooter(`ticket-${userDiscriminator}`)
                 .setColor("BLUE")
@@ -40,7 +40,7 @@ module.exports.run = async (client, message, args) => {
 
             let LogEmbed = new discord.MessageEmbed()
                 .setTitle("Ticket Created")
-                .setFooter("Discordlogs")
+                .setFooter("Discord-logs")
                 .setTimestamp()
                 .setColor("BLUE")
                 .addFields(

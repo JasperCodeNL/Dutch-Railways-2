@@ -47,8 +47,11 @@ client.on("guildMemberAdd", member => {
         .setTitle("Joinlog Discord")
         .setDescription("An user joined the Discord server.")
         .setColor("GREEN")
+        .setFooter("Discord-logs")
         .addFields(
-            { name: "User:", value: `*${member}*` },
+            { name: "Name:", value: `*${member}*` },
+            { name: "Id:", value: `*${member.id}*` },
+            { name: "Account Age:", value: `*${member.user.createdAt}*` },
         );
 
     logChannel.send({ embeds: [joinEmbed] });
