@@ -16,7 +16,7 @@ module.exports.run = async (client, message, args) => {
 
         createdChan.setParent(categoryID).then((settedParent) => {
 
-            createdChan.permissionOverwrites.edit(message.author.id, {
+            settedParent.permissionOverwrites.edit(message.author.id, {
                 CREATE_INSTANT_INVITE: false,
                 READ_MESSAGE_HISTORY: true,
                 SEND_MESSAGES: true,
@@ -28,18 +28,25 @@ module.exports.run = async (client, message, args) => {
             let TicketChEmbed = new discord.MessageEmbed()
                 .setTitle(`ticket-${userDiscriminator}`)
                 .setDescription(`Welcome ${message.author}, the staff team is coming soon. Send your message in advance.`)
+                .addField("Reason:", reason)
+                .setFooter(`ticket-${userDiscriminator}`)
 
-            var LogEmbed = new discord.MessageEmbed()
+            let CreateEmbed = new discord.MessageEmbed()
+                .setTitle(`Your ticket has been created ${message.author}! | ${createdChannel}`)
+                .setTimestamp()
+
+            let LogEmbed = new discord.MessageEmbed()
                 .setTitle("Ticket Created")
                 .setFooter("Discordlogs")
                 .setTimestamp()
                 .setColor("BLUE")
                 .addFields(
                     { name: "User:", value: `${message.author.tag} (${message.author.id})` },
-                    { name: "Ticket:", value: `${createdChannel.name}` }
+                    { name: "Ticket:", value: `#${createdChannel.name}` }
                 );
             
-            createdChan.send({ embeds: [TicketChEmbed] });
+            message.channel.send({ embeds: [CreateEmbed] });
+            settedParent.send({ embeds: [TicketChEmbed] });
             bot.channels.cache.get('935864875182346290').send({ embeds: [LogEmbed] });
 
         }).catch(err => {
