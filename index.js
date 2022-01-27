@@ -113,6 +113,7 @@ client.on("messageDelete", async messageDeleted => {
         .setTitle("Message deleted")
         .setColor("BLUE")
         .setFooter("Discord-logs")
+        .setTimestamp()
         .addFields(
             { name: "User:", value: `${messageDeleted.author.tag} (${messageDeleted.author.id})` },
             { name: "Channel:", value: `${messageDeleted.channel}` },
@@ -133,6 +134,7 @@ client.on("messageUpdate", async (oldMessage, newMessage) => {
         .setTitle("Message updated")
         .setColor("BLUE")
         .setFooter("Discord-logs")
+        .setTimestamp()
         .addFields(
             { name: "User:", value: `${newMessage.author.tag} (${newMessage.author.id})` },
             { name: "Channel:", value: `${newMessage.channel}` },
