@@ -32,7 +32,7 @@ module.exports.run = async (client, message, args) => {
                 .setFooter(`ticket-${userDiscriminator}`)
 
             let CreateEmbed = new discord.MessageEmbed()
-                .setTitle(`Your ticket has been created ${message.author}! | ${createdChannel}`)
+                .setTitle(`Your ticket has been created ${message.author}! | ${createdChan}`)
                 .setTimestamp()
 
             let LogEmbed = new discord.MessageEmbed()
