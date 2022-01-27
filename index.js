@@ -111,7 +111,6 @@ client.on("messageDelete", async messageDeleted => {
 
     var deleteEmbed = new discord.MessageEmbed()
         .setTitle("Message deleted")
-        .setDescription("A message is deleted.")
         .setColor("BLUE")
         .setFooter("Discord-logs")
         .addFields(
@@ -131,14 +130,13 @@ client.on("messageUpdate", async (oldMessage, newMessage) => {
     if (oldMessage.content == newMessage.content) return;
 
     var editEmbed = new discord.MessageEmbed()
-        .setTitle("Message deleted")
-        .setDescription("A message is deleted.")
+        .setTitle("Message updated")
         .setColor("BLUE")
         .setFooter("Discord-logs")
         .addFields(
             { name: "User:", value: `${newMessage.author.tag} (${newMessage.author.id})` },
             { name: "Channel:", value: `${newMessage.channel}` },
-            { name: "Befor:", value: `${oldMessage.content}` },
+            { name: "Before:", value: `${oldMessage.content}` },
             { name: "After:", value: `${newMessage.content}` },
         );
 
